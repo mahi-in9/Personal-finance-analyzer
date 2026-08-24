@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    roles: {
-        type: [String],
-        default: ['user'],
+    currency: {
+        type: String,
+        default: 'INR',
     },
 }, { timestamps: true });
 
