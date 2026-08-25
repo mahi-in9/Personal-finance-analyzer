@@ -4,4 +4,27 @@ const api = axios.create({
     baseURL: 'http://localhost:5000/api', // Replace with your backend API URL
 });
 
+api.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token'); // Assuming you store the token in localStorage
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    }
+);
+
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            // Handle unauthorized access, e.g., redirect to login page
+            console.error('Unauthorized access - redirecting to login');
+            localStorage.removeItem('token'); // Clear token from localStorage
+            window.location.href = '/login'; // Redirect to login page
+        }
+        return Promise.reject(error);
+    }
+);
+
 export default api;
