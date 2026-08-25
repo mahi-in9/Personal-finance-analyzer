@@ -3,10 +3,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-const connectDB = require('./config/db');
+const connectDB = require('./config/DB');
 
 const authRouter = require('./routes/auth');
-const errorHandler = require('./middleware/errorMiddleware');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
