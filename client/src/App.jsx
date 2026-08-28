@@ -8,14 +8,14 @@ import Register from './pages/Register'
 function App() {
 
   return (
-    <>
-      <h2>Personal Finance Analyzer</h2>
+    <div className="App">
+      <h1 className="nav-bar">Personal Finance Analyzer</h1>
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/upload' element={<Upload />} />
         <Route path='/register' element={<Register />} />
       </Routes>
-    </>
+    </div>
   )
 }
 

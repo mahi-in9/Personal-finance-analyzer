@@ -18,9 +18,9 @@ function Register() {
     }
 
     return (
-        <>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="register-container">
+            <h2>Register</h2>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Username"
@@ -41,7 +41,7 @@ function Register() {
                 />
                 <button type="submit">Register</button>
             </form>
-        </>
+        </div>
     );
 }
 

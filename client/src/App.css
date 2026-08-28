@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #293838;
+    color: #fff8a8;
+}
+
+.nav-bar {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgb(1, 13, 45);
+    border-radius: 1rem;
+}
+
+
+.register-container {
+    padding-top: 1rem;
+    min-height: 40rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-container logi
+
