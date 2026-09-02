@@ -3,13 +3,16 @@ import Login from './pages/Login'
 import Upload from './pages/Upload'
 import { Routes, Route } from 'react-router-dom'
 import Register from './pages/Register'
+import Navbar from './components/Navbar'
 
 
 function App() {
 
   return (
     <div className="App">
-      <h1 className="nav-bar">Personal Finance Analyzer</h1>
+
+      <Navbar />
+
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/upload' element={<Upload />} />
