@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createUser } from "../app/slices/userSlice";
 
 function Register() {
 
@@ -7,14 +9,15 @@ function Register() {
         email: "",
         password: ""
     });
+    const dispatch = useDispatch();
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log("Username:", formData.username);
-        console.log("Email:", formData.email);
-        console.log("Password:", formData.password);
+        const response = await dispatch(createUser(formData));
+        console.log(response);
+
     }
 
     return (
