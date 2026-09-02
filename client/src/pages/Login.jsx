@@ -15,9 +15,9 @@ function Login() {
 
 
   return (
-    <div className="login">
+    <div className="register-container">
       <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="login-form">
         <input
           type="text"
           placeholder="Username"
