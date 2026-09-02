@@ -19,7 +19,7 @@ function Login() {
     console.log(response);
 
     if (response.type === "user/loginUser/fulfilled") {
-      navigate("/upload");
+      navigate("/dashboard");
     }
   }
 
