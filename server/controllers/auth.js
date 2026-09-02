@@ -44,10 +44,10 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
-        // Find the user by email
-        const user = await User.findOne({ email });
+        // Find the user by username
+        const user = await User.findOne({ username });
         if (!user) {
             const error = new Error('Invalid credentials');
             error.statusCode = 401;

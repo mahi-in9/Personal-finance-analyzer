@@ -1,16 +1,26 @@
 import { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../app/slices/userSlice";
+
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Handle login logic here
-    console.log("Logging in with:", { username, password });
+    const response = await dispatch(loginUser({ username, password }));
+    console.log(response);
 
+    if (response.type === "user/loginUser/fulfilled") {
+      navigate("/upload");
+    }
   }
 
 
