@@ -15,8 +15,30 @@ body {
     margin: 1rem;
     background-color: rgb(1, 13, 45);
     border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
 }
 
+.nav-bar .nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-bar .nav-links a {
+    text-decoration: none;
+    color: #fff8a8;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-bar .nav-links a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+.nav-bar .nav-links a:active {
+    color: #e0d47a;
+}
 
 .register-container {
     padding-top: 1rem;
@@ -28,7 +50,32 @@ body {
     align-items: center;
 }
 
-.register-container .nav-bar{
-    
-}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 20rem;
 
+    input {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: none;
+    }
+
+    button {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: #fff8a8;
+        color: #293838;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #e0d47a;
+    }
+
+    button:active {
+        background-color: #c0b45a;
+    }
+}
