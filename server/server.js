@@ -6,6 +6,7 @@ const cors = require('cors');
 const connectDB = require('./config/DB');
 
 const authRouter = require('./routes/auth');
+const transactionsRouter = require('./routes/transactions');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -20,9 +21,9 @@ app.use(cors({
 ));
 
 app.use('/api/auth', authRouter);
+app.use('/api/transactions', transactionsRouter);
+
 app.use(errorHandler);
-
-
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

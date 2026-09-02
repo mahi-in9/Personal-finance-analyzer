@@ -68,11 +68,3 @@ exports.getTransactionById = async (req, res, next) => {
     }
 }
 
-
-module.exports = {
-    getTransactions,
-    createTransaction,
-    deleteTransaction,
-    updateTransaction,
-    getTransactionById
-};
