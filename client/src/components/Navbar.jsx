@@ -13,7 +13,7 @@ function Navbar() {
 
     return (
         <nav className="nav-bar">
-            <h1 className="nav-title">Personal Finance Analyzer</h1>
+            <Link to={"/dashboard"} className="nav-title">Personal Finance Analyzer</Link>
             <div className="nav-links">
 
                 {isAuthenticated ? (

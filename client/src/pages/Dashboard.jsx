@@ -6,7 +6,6 @@ function Dashboard() {
 
     return (
         <div className="dashboard">
-            <h1 className="dashboard-title">Dashboard</h1>
 
             <div className="dashboard-content">
                 <div className="dashboard-left">
