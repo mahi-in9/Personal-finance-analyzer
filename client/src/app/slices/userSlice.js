@@ -6,8 +6,8 @@ export const createUser = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         try {
             const response = await api.post('/auth/register', credentials);
-            localStorage.setItem('token', response.data.token);
-            return response.data;
+
+            return response.data.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
         }
@@ -19,7 +19,7 @@ export const loginUser = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         try {
             const response = await api.post('/auth/login', credentials);
-            localStorage.setItem('token', response.data.token);
+
             return response.data;
         }
         catch (error) {
@@ -46,15 +46,13 @@ const userSlice = createSlice({
         user: null,
         token: localStorage.getItem('token') || null,
         loading: false,
-        error: null,
-        isAuthenticated: !!localStorage.getItem('token')
+        error: null
     },
     reducers: {
         logout: (state) => {
             state.user = null;
-            state.token = null;
             localStorage.removeItem('token');
-            state.isAuthenticated = false;
+            state.token = null;
             state.error = null;
         },
         clearError: (state) => {
@@ -71,7 +69,6 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.token = action.payload.data.token;
                 localStorage.setItem('token', action.payload.data.token);
-                state.isAuthenticated = true;
             })
             .addCase(createUser.rejected, (state, action) => {
                 state.loading = false;
@@ -85,9 +82,20 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.token = action.payload.data.token;
                 localStorage.setItem('token', action.payload.data.token);
-                state.isAuthenticated = true;
             })
             .addCase(loginUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addAsyncThunk(fetchUserProfile.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addAsyncThunk(fetchUserProfile.fulfilled, (state, action) => {
+                state.loading = false;
+                state.user = action.payload.data;
+            })
+            .addAsyncThunk(fetchUserProfile.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             });
