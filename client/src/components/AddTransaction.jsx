@@ -18,7 +18,7 @@ function AddTransaction() {
 
         const newTransaction = {
             text,
-            amount: +amount
+            amount: Number(amount)
         };
 
         dispatch(addTransaction(newTransaction));
@@ -31,16 +31,16 @@ function AddTransaction() {
             <h1 className="add-transaction-title">Add Transaction</h1>
 
             <form className="add-transaction-form" onSubmit={onSubmit}>
-                <textarea 
-                    placeholder="Description" 
-                    rows={5} 
-                    cols={10} 
+                <textarea
+                    placeholder="Description"
+                    rows={5}
+                    cols={10}
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 />
-                <input 
-                    type="number" 
-                    placeholder="Amount" 
+                <input
+                    type="number"
+                    placeholder="Amount"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                 />
