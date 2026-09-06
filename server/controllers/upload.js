@@ -2,7 +2,7 @@ const fs = require("fs")
 const { parse } = require("csv-parse/sync")
 const pdfParse = require("pdf-parse")
 const Transaction = require("../models/Transaction")
-
+const { categorizeTransaction } = require("../ai/categorizeChain")
 
 function parseCsv(fiePath) {
     const content = fs.readFileSync(filePath, "utf-8")
@@ -60,34 +60,40 @@ const upload = async (req, res, next) => {
         const saved = []
 
         for (const row of validRows) {
+            let category = "other";
+            let confidence = null;
 
+            try {
+                const result = await categorizeTransaction(row.description, row.amount)
+                category = result.category
+                confidence = result.confidence
+            } catch (error) {
+                console.error("Categorization failed for row:", row.description, error.message);
+            }
 
             const transaction = await Transaction.create({
                 userId: req.user._id,
                 description: row.description,
                 amount: row.amount,
                 date: row.date,
-                category: "llm",
-                confidence:"",
+                category,
+                confidence,
                 categorizedBy: "llm",
-                source: isCsv? "csv" : "pdf",
+                source: isCsv ? "csv" : "pdf",
                 rawText: raw.description,
             })
 
             saved.push(transaction)
         }
 
-        fs.unlink(filePath, () => {});
-
-
-
-        res.status(200).json({ message: `Imported ${saved.length} of ${rawRows.length} rows`,
+        fs.unlink(filePath, () => { });
+        res.status(200).json({
+            message: `Imported ${saved.length} of ${rawRows.length} rows`,
             data: saved
         });
-
     } catch (error) {
         next(error);
     }
 };
-g
+
 module.exports = { upload }; 
