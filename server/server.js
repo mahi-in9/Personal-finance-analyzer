@@ -7,6 +7,7 @@ const connectDB = require('./config/DB');
 
 const authRouter = require('./routes/auth');
 const transactionsRouter = require('./routes/transactions');
+const uploadRouter = require("./routes/upload");
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(cors({
 
 app.use('/api/auth', authRouter);
 app.use('/api/transactions', transactionsRouter);
+app.use('/api/upload', uploadRouter);
 
 app.use(errorHandler);
 
